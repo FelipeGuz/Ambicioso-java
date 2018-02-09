@@ -12,7 +12,7 @@ import acm.graphics.*;
 
 public class Juego extends GraphicsProgram{
 	
-	//Cuadrados de decoración
+	//Cuadrados de decoraciÃ³n
 	GRect sup= new GRect(1366,206); 
 	GRect inf = new GRect(1366,206);
 	GRect med = new GRect(1366,356);
@@ -25,10 +25,10 @@ public class Juego extends GraphicsProgram{
 	GLabel jugadores = new GLabel("Cantidad de jugadores: "+cantidadJugadores); 
 	
 	GLabel puntajeInicial = new GLabel("Puntaje con el que se comienza: "+puntajeInicio);
-	JButton mas_puntos = new JButton("Más puntos"); //Boton mas puntos inicio
+	JButton mas_puntos = new JButton("MÃ¡s puntos"); //Boton mas puntos inicio
 	JButton menos_puntos = new JButton("Menos puntos"); //Boton menos puntos inicio
 	
-	JButton mas_jugadores = new JButton("Más Jugadores"); //Boton mas jugadores
+	JButton mas_jugadores = new JButton("MÃ¡s Jugadores"); //Boton mas jugadores
 	JButton menos_jugadores = new JButton("Menos Jugadores"); //Boton menos jugadores
 	JButton continuar = new JButton("CONTINUAR"); //Boton continuar
 	
@@ -42,7 +42,7 @@ public class Juego extends GraphicsProgram{
 	GRect dado5 = new GRect(80,80);
 	
 	public void run(){
-		setSize(1366,768); //Tamaño de la pagina
+		setSize(1366,768); //TamaÃ±o de la pagina
 		fondoBase();
 		inicio();
 		addActionListeners();
@@ -73,14 +73,14 @@ public class Juego extends GraphicsProgram{
 				add(titulo,460,103);
 	}
 	
-	//Función inicio del juego: Bienvenida, Cantidad de jugadores, Cantidad de puntos a jugar.
+	//FunciÃ³n inicio del juego: Bienvenida, Cantidad de jugadores, Cantidad de puntos a jugar.
 	public void inicio(){
 		
 		//Puntaje Inicial del juego (Letrero)
 		puntajeInicial.setFont("SansSerif-bold-40");
 		add(puntajeInicial,100,430);
 		
-		//Número de jugadores (Letrero)
+		//NÃºmero de jugadores (Letrero)
 		jugadores.setFont("SansSerif-bold-40");
 		add(jugadores,267,300);
 		
@@ -94,7 +94,7 @@ public class Juego extends GraphicsProgram{
 		tirar.setVisible(false);
 	}
 	
-	//Función que agrega los dados al oprimir "Continuar"
+	//FunciÃ³n que agrega los dados al oprimir "Continuar"
 	public void dados(double X, double Y){
 		puntajeTotalDados.setFont("SansSerif-bold-40");
 		add(puntajeTotalDados,600,270);
@@ -121,9 +121,9 @@ public class Juego extends GraphicsProgram{
 	
 	}
 	
-	//Método que da la función del boton "Mas", "Menos", "Continuar"
+	//MÃ©todo que da la funciÃ³n del boton "Mas", "Menos", "Continuar"
 	public void actionPerformed(ActionEvent e){
-		if(e.getActionCommand().equals("Más Jugadores")){ //Si se oprime "Más Jugadores aumenta la cantidad (Inicio del juego)"
+		if(e.getActionCommand().equals("MÃ¡s Jugadores")){ //Si se oprime "MÃ¡s Jugadores aumenta la cantidad (Inicio del juego)"
 			if(cantidadJugadores>=0 && cantidadJugadores<5){
 				cantidadJugadores = cantidadJugadores+1;
 				jugadores.setLabel("Cantidad de jugadores: "+cantidadJugadores);
@@ -133,7 +133,7 @@ public class Juego extends GraphicsProgram{
 				cantidadJugadores = cantidadJugadores-1;
 				jugadores.setLabel("Cantidad de jugadores: "+cantidadJugadores);
 			}
-		}else if(e.getActionCommand().equals("Más puntos")){ //Aumenta la cantidad de puntos iniciales (Inicio del juego)
+		}else if(e.getActionCommand().equals("MÃ¡s puntos")){ //Aumenta la cantidad de puntos iniciales (Inicio del juego)
 			if(puntajeInicio>=0 && puntajeInicio<10000){
 				puntajeInicio = puntajeInicio+1000;
 				puntajeInicial.setLabel("Puntaje con el que se comienza: "+puntajeInicio);
@@ -163,7 +163,7 @@ public class Juego extends GraphicsProgram{
 			carasDado(dado5);
 		}
 	}
-	//Método que le da la forma a los dados
+	//MÃ©todo que le da la forma a los dados
 	public void carasDado(GRect obj){
 		double X = obj.getX();
 		double Y = obj.getY();
@@ -186,7 +186,7 @@ public class Juego extends GraphicsProgram{
 //			remove(cara1);
 			
 			add(cara1,X+(w/3),Y+(w/3));
-			cara1.setSize(w/4,w/4);
+			cara1.setSize(w/3,w/3);
 			
 			cara1.sendToFront();
 			cara1.setFilled(true);
@@ -200,8 +200,8 @@ public class Juego extends GraphicsProgram{
 			
 			add(cara1,X+((w/6)*3),Y+((h/6)*1));
 			add(cara2,X+((w/6)*1),Y+((h/6)*3));
-			cara1.setSize(w/4,w/4);
-			cara2.setSize(w/4,w/4);
+			cara1.setSize(w/3,w/3);
+			cara2.setSize(w/3,w/3);
 			
 			cara1.setFilled(true);
 			cara1.setColor(Color.BLACK);
