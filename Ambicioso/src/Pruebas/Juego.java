@@ -186,7 +186,7 @@ public class Juego extends GraphicsProgram{
 //			remove(cara1);
 			
 			add(cara1,X+(w/3),Y+(w/3));
-			cara1.setSize(w/3, w/3);
+			cara1.setSize(w/4,w/4);
 			
 			cara1.sendToFront();
 			cara1.setFilled(true);
@@ -200,8 +200,8 @@ public class Juego extends GraphicsProgram{
 			
 			add(cara1,X+((w/6)*3),Y+((h/6)*1));
 			add(cara2,X+((w/6)*1),Y+((h/6)*3));
-			cara1.setSize(w/3,w/3);
-			cara2.setSize(w/3,w/3);
+			cara1.setSize(w/4,w/4);
+			cara2.setSize(w/4,w/4);
 			
 			cara1.setFilled(true);
 			cara1.setColor(Color.BLACK);
