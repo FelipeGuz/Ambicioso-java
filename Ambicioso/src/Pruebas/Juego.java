@@ -3,6 +3,7 @@ package Pruebas;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
@@ -19,7 +20,13 @@ public class Juego extends GraphicsProgram{
 	
 	int cantidadJugadores; //Variable que guarda la cantidad de jugadores
 	int puntajeInicio; //Variable que guarda el puntaje a alcanzar
-	int puntajeDados;
+	int puntajeDados; //Variable que almacena el puntaje logrado por los dados
+	int valor_dado;
+	int dado_1;
+	int dado_2;
+	int dado_3;
+	int dado_4;
+	int dado_5;
 	
 	GLabel titulo = new GLabel("AMBICIOSO"); //Titulo del juego
 	GLabel jugadores = new GLabel("Cantidad de jugadores: "+cantidadJugadores); 
@@ -157,12 +164,34 @@ public class Juego extends GraphicsProgram{
 			//removeAll();
 			//fondoBase();
 			carasDado(dado1);
+			dado_1 = valor_dado;
 			carasDado(dado2);
+			dado_2 = valor_dado;
 			carasDado(dado3);
+			dado_3 = valor_dado;
 			carasDado(dado4);
+			dado_4 = valor_dado;
 			carasDado(dado5);
+			dado_5 = valor_dado;
 		}
 	}
+//	public void tres_cuatro_iguales(int a, int b, int c, int d,int e){
+//		ArrayList<Integer>lista = new ArrayList<Integer>();
+//		lista.add(a);
+//		lista.add(b);
+//		lista.add(c);
+//		lista.add(d);
+//		lista.add(e);
+//		int veces_encontrado;
+//		for(int i=0; i<lista.size(); i++){
+//			int busqueda = lista.get(i);
+//			for(int u = 0; u<lista.size(); u++){
+//				boolean k = busqueda==lista.get(u);
+//				(k)? veces_encontrado++|null;
+//			}
+//		}
+//	}
+	
 	//MÃ©todo que le da la forma a los dados
 	public void carasDado(GRect obj){
 		double X = obj.getX();
@@ -177,6 +206,7 @@ public class Juego extends GraphicsProgram{
 		GOval cara6 = new GOval(0,0);
 		RandomGenerator ranGen = RandomGenerator.getInstance();
 		int cara = ranGen.nextInt(1,6);
+		valor_dado = cara;
 		//int cara=2;
 		switch(cara){
 		case 1:
@@ -338,4 +368,5 @@ public class Juego extends GraphicsProgram{
 		}
 	}
 	//Buscar la manera de borrar los circulos para poder volver a lanzar los dados
+	//Arreglar método que busca las ternas o grupos de cuatro de números 
 }
