@@ -214,9 +214,9 @@ public class Juego extends GraphicsProgram{
 			puntajeTotalDados.setLabel("Puntaje: "+puntajeDados);
 //			GOval cara1 = new GOval(w/3,h/3);
 //			remove(cara1);
+			cara1.setSize(w/3,w/3);
 			
 			add(cara1,X+(w/3),Y+(w/3));
-			cara1.setSize(w/3,w/3);
 			
 			cara1.sendToFront();
 			cara1.setFilled(true);
@@ -228,10 +228,11 @@ public class Juego extends GraphicsProgram{
 //			remove(cara2);
 //			remove(cara2_1);
 			
-			add(cara1,X+((w/6)*3),Y+((h/6)*1));
-			add(cara2,X+((w/6)*1),Y+((h/6)*3));
 			cara1.setSize(w/3,w/3);
 			cara2.setSize(w/3,w/3);
+			
+			add(cara1,X+((w/6)*3),Y+((h/6)*1));
+			add(cara2,X+((w/6)*1),Y+((h/6)*3));
 			
 			cara1.setFilled(true);
 			cara1.setColor(Color.BLACK);
@@ -245,13 +246,13 @@ public class Juego extends GraphicsProgram{
 //			remove(cara3);
 //			remove(cara3_1);
 //			remove(cara3_2);
+			cara1.setSize(w/4,w/4);
+			cara2.setSize(w/4,w/4);
+			cara3.setSize(w/4,w/4);
 			
 			add(cara1,X+((w/5)*1),Y+((w/5)*3));
 			add(cara2,X+((w/5)*2),Y+((w/5)*2));
 			add(cara3,X+((w/5)*3),Y+((w/5)*1));
-			cara1.setSize(w/3,w/3);
-			cara2.setSize(w/3,w/3);
-			cara3.setSize(w/3,w/3);
 			
 			cara1.setFilled(true);
 			cara1.setColor(Color.BLACK);
@@ -271,14 +272,15 @@ public class Juego extends GraphicsProgram{
 //			remove(cara4_2);
 //			remove(cara4_3);
 			
-			add(cara1,X+(w/5)*1,Y+(h/5)*1);
-			add(cara2,X+(w/5)*3,Y+(h/5)*1);
-			add(cara3,X+(w/5)*1,Y+(h/5)*3);
-			add(cara4,X+(w/5)*3,Y+(h/5)*3);
 			cara1.setSize(w/4,w/4);
 			cara2.setSize(w/4,w/4);
 			cara3.setSize(w/4,w/4);
 			cara4.setSize(w/4,w/4);
+			
+			add(cara1,X+(w/5)*1,Y+(h/5)*1);
+			add(cara2,X+(w/5)*3,Y+(h/5)*1);
+			add(cara3,X+(w/5)*1,Y+(h/5)*3);
+			add(cara4,X+(w/5)*3,Y+(h/5)*3);
 			
 			cara1.setFilled(true);
 			cara1.setColor(Color.BLACK);
@@ -303,16 +305,17 @@ public class Juego extends GraphicsProgram{
 //			remove(cara5_3);
 //			remove(cara5_4);
 			
-			add(cara1,X+(w/5)*1,Y+(h/5)*1);
-			add(cara2,X+(w/5)*3,Y+(h/5)*1);
-			add(cara3,X+(w/5)*1,Y+(h/5)*3);
-			add(cara4,X+(w/5)*3,Y+(h/5)*3);
-			add(cara5,X+(w/5)*2,Y+(h/5)*2);
 			cara1.setSize(w/4,w/4);
 			cara2.setSize(w/4,w/4);
 			cara3.setSize(w/4,w/4);
 			cara4.setSize(w/4,w/4);
 			cara5.setSize(w/4,w/4);
+			
+			add(cara1,X+(w/5)*1,Y+(h/5)*1);
+			add(cara2,X+(w/5)*3,Y+(h/5)*1);
+			add(cara3,X+(w/5)*1,Y+(h/5)*3);
+			add(cara4,X+(w/5)*3,Y+(h/5)*3);
+			add(cara5,X+(w/5)*2,Y+(h/5)*2);
 			
 			cara1.setFilled(true);
 			cara1.setColor(Color.BLACK);
@@ -339,18 +342,19 @@ public class Juego extends GraphicsProgram{
 //			remove(cara6_4);
 //			remove(cara6_5);
 			
-			add(cara1,X+(w/7)*1.5,Y+(h/7)*0.7);
-			add(cara2,X+(w/7)*1.5,Y+(h/7)*2.7);
-			add(cara3,X+(w/7)*1.5,Y+(h/7)*4.7);
-			add(cara4,X+(w/7)*4,Y+(h/7)*0.7);
-			add(cara5,X+(w/7)*4,Y+(h/7)*2.7);
-			add(cara6,X+(w/7)*4,Y+(h/7)*4.7);
 			cara1.setSize(w/4,w/4);
 			cara2.setSize(w/4,w/4);
 			cara3.setSize(w/4,w/4);
 			cara4.setSize(w/4,w/4);
 			cara5.setSize(w/4,w/4);
 			cara6.setSize(w/4,w/4);
+			
+			add(cara1,X+(w/7)*1.5,Y+(h/7)*0.7);
+			add(cara2,X+(w/7)*1.5,Y+(h/7)*2.7);
+			add(cara3,X+(w/7)*1.5,Y+(h/7)*4.7);
+			add(cara4,X+(w/7)*4,Y+(h/7)*0.7);
+			add(cara5,X+(w/7)*4,Y+(h/7)*2.7);
+			add(cara6,X+(w/7)*4,Y+(h/7)*4.7);
 			
 			cara1.setFilled(true);
 			cara1.setColor(Color.BLACK);
