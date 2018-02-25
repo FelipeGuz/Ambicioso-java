@@ -1,24 +1,17 @@
 package Pruebas;
 
 import java.awt.Color;
-import java.awt.Graphics;
 
 import acm.program.*;
 import acm.util.RandomGenerator;
 import acm.graphics.*;
 
-public class Dados extends GraphicsProgram{
-	public void run(){
-		
-		GRect cuadrado = new GRect(80,80);
-		//cuadrado.setLocation(60, 50);
-		//add(cuadrado);
-		//carasDado(cuadrado);
-		
-		Dado prueba = new Dado(cuadrado);
-		prueba.setLocation(60, 50);
-		add(prueba);
-		prueba.carasDado(cuadrado);
+public class Dado extends GraphicsProgram{
+	
+	GRect cuadrado;
+	
+	public Dado(GRect cuadrado){
+		this.cuadrado = cuadrado;
 	}
 	
 	public void carasDado(GRect obj){
