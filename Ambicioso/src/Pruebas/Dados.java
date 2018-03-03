@@ -11,14 +11,13 @@ public class Dados extends GraphicsProgram{
 	public void run(){
 		
 		GRect cuadrado = new GRect(80,80);
-		//cuadrado.setLocation(60, 50);
-		//add(cuadrado);
-		//carasDado(cuadrado);
+		cuadrado.setLocation(60, 50);
+		add(cuadrado);
+		carasDado(cuadrado);
 		
-		Dado prueba = new Dado(cuadrado);
-		prueba.setLocation(60, 50);
-		add(prueba);
-		prueba.carasDado(cuadrado);
+//		Dado prueba = new Dado(80,40,40);
+//		prueba.setFilled(true);
+//		add(prueba);
 	}
 	
 	public void carasDado(GRect obj){
