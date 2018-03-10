@@ -204,6 +204,7 @@ public class Juego extends GraphicsProgram{
 			borrarElementosLista(tercero);
 			borrarElementosLista(cuarto);
 			borrarElementosLista(quinto);
+			
 			carasDado(dado1,primero); //Asigna un valor al dado
 			dado_1 = valor_dado; //Guarda el valor del dado que le salio
 			carasDado(dado2,segundo);
@@ -218,7 +219,7 @@ public class Juego extends GraphicsProgram{
 		}
 	}
 
-	//Metodo que asigna los puntos segun la cara del dado
+//Metodo que asigna los puntos segun la cara del dado
 	public void puntaje(){
 		int numero;
 		int cantidad;
@@ -229,7 +230,7 @@ public class Juego extends GraphicsProgram{
 		listaPuntaje.add(dado_4);
 		listaPuntaje.add(dado_5);
 		
-		//Busca las repeticiones de los valores que salieron en los dados
+//Busca las repeticiones de los valores que salieron en los dados
 		int repeticion = 1;
 		int contador = 0;
 		int tamano = listaPuntaje.size();
@@ -249,8 +250,8 @@ public class Juego extends GraphicsProgram{
 			listaPuntaje.remove(0);
 			contador++;
 		}
-		//Asigna los puntajes segun la lista listaFPuntaje 
-		//(valores impares el valor, valores pares la cantidad de valores del valor)
+//Asigna los puntajes segun la lista listaFPuntaje 
+//(valores impares el valor, valores pares la cantidad de valores del valor)
 		for(int i=0; i<listaFPuntaje.size();i+=2){
 			numero = listaFPuntaje.get(i);
 			cantidad = listaFPuntaje.get(i+1);
@@ -278,7 +279,7 @@ public class Juego extends GraphicsProgram{
 	
 
 	
-	//Metodo que le da la forma a los dados
+//Metodo que le da la forma a los dados
 	public void carasDado(GRect obj, ArrayList<GOval> asignacion){
 		double X = obj.getX();
 		double Y = obj.getY();
