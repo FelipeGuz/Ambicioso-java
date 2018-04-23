@@ -90,6 +90,7 @@ public class Juego extends GraphicsProgram{
 		fondoBase();
 		inicio();
 		addActionListeners();
+		//Prubas para github
 	}
 	
 	public void fondoBase(){
