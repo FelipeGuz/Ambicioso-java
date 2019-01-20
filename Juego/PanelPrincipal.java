@@ -6,9 +6,11 @@ import basicJuego.*;
 public class PanelPrincipal {
 	
 	private listaJugadores lj;
+	PanelInicial pi;
 	
 	public PanelPrincipal() {
 		this.lj = new listaJugadores();
+		this.pi = new PanelInicial(this);
 		mostrarPanelInicial();
 	}
 	
@@ -17,7 +19,6 @@ public class PanelPrincipal {
 	}
 	
 	public void mostrarPanelInicial() {
-		PanelInicial pi = new PanelInicial(this);
 		pi.setVisible(true);
 	}
 	

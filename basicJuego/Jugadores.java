@@ -26,4 +26,12 @@ public class Jugadores {
 	public void setNumJugador(int newNumJugador) {
 		numJugador = newNumJugador;
 	}
+	
+	public String toString() {
+		return "Jugador #"+numJugador;
+	}
+	
+	public String toStringP() {
+		return "Jugador #"+numJugador+" /Puntaje: "+puntaje;
+	}
 }

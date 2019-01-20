@@ -22,7 +22,7 @@ public class Dados {
 		this.eliminarDado = new ArrayList<GOval>();
 	}
 	
-	public void carasDado(){
+	public int carasDado(){
 		double X = obj.getX();
 		double Y = obj.getY();
 		double h = obj.getHeight();
@@ -163,6 +163,7 @@ public class Dados {
 			break;
 			
 		}
+		return cara;
 	}
 	
 	public void eliminarDados(){

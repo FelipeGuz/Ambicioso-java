@@ -27,7 +27,7 @@ import java.awt.event.ActionEvent;
 public class PanelInicial extends JFrame {
 
 	private JPanel contentPane;
-	private int cantidadDeJuagdores;
+	private int cantidadDeJugadores;
 	private int puntajeMaximo;
 
 	/**
@@ -35,7 +35,7 @@ public class PanelInicial extends JFrame {
 	 */
 	public PanelInicial(PanelPrincipal pp) {
 		
-		this.cantidadDeJuagdores = 0;
+		this.cantidadDeJugadores = 0;
 		this.puntajeMaximo = 0;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,8 +89,8 @@ public class PanelInicial extends JFrame {
 		JButton btnMasJugadores = new JButton("Mas jugadores");
 		btnMasJugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				labelNumCantidadJugadores.setText(String.valueOf(cantidadDeJuagdores+1));
-				cantidadDeJuagdores+=1;
+				labelNumCantidadJugadores.setText(String.valueOf(cantidadDeJugadores+1));
+				cantidadDeJugadores+=1;
 			}
 		});
 		btnMasJugadores.setBounds(606, 78, 118, 23);
@@ -100,9 +100,9 @@ public class PanelInicial extends JFrame {
 		JButton btnMenosJugadores = new JButton("Menos jugadores");
 		btnMenosJugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(cantidadDeJuagdores>0) {
-					labelNumCantidadJugadores.setText(String.valueOf(cantidadDeJuagdores-1));
-					cantidadDeJuagdores-=1;
+				if(cantidadDeJugadores>0) {
+					labelNumCantidadJugadores.setText(String.valueOf(cantidadDeJugadores-1));
+					cantidadDeJugadores-=1;
 				}
 			}
 		});
@@ -137,10 +137,10 @@ public class PanelInicial extends JFrame {
 		JButton btnContinuar = new JButton("CONTINUAR");
 		btnContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(cantidadDeJuagdores==0 || puntajeMaximo==0) {
+				if(cantidadDeJugadores==0 || puntajeMaximo==0) {
 					JOptionPane.showMessageDialog(null, "Ambos parametros deben ser diferentes de cero");
 				}else {
-					for(int i=0; i<cantidadDeJuagdores; i++) {
+					for(int i=0; i<cantidadDeJugadores; i++) {
 						Jugadores ju = new Jugadores(i+1);
 						pp.getListaJugadores().insertarJugador(ju);
 					}
@@ -152,5 +152,9 @@ public class PanelInicial extends JFrame {
 		btnContinuar.setBounds(388, 281, 121, 23);
 		desktopPane_1.add(btnContinuar);
 		
+	}
+	
+	public int getNumeroJugadores() {
+		return cantidadDeJugadores;
 	}
 }

@@ -17,4 +17,13 @@ public class listaJugadores {
 	public Jugadores buscarJugador(int numJugador) {
 		return listaJugadores.get(numJugador);
 	}
+	
+	public int size() {
+		return listaJugadores.size();
+	}
+	
+	public Jugadores get(int index) {
+		return listaJugadores.get(index);
+	}
+	
 }
