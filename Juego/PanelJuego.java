@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import acm.graphics.*;
@@ -50,14 +51,14 @@ public class PanelJuego extends JFrame {
 	private JPanel panel4;
 	private JPanel panel5;
 	
-	private JLabel lblNewLabel;
-	private JLabel label;
-	private JButton btnTirarDado;
-	private JTable table;
+	private JLabel lblNewLabel; //Label del puntaje parcial por partida
+	private JLabel label; //Puntaje parcial por partida 
+	private JButton btnTirarDado; //Boton tirar dado
+	private JTable table; //Tabla de jugadores
 	
-	private int puntajeJugador;
-	public int jugadorActual = 1;
-	private JLabel jugadorEnTurno;
+	private int puntajeJugador; //Puntaje parcial que se le suma al jugador por partida
+	public int jugadorActual = 1; //Jugador que se encuentra en turno
+	private JLabel jugadorEnTurno; //Label del jugador en turno
 
 	/**
 	 * Create the frame.
@@ -175,18 +176,25 @@ public class PanelJuego extends JFrame {
 		desktopPane_1.add(label);
 		
 		JLabel turnoDelJugador = new JLabel("Turno del jugador: ");
-		turnoDelJugador.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		turnoDelJugador.setBounds(70, 298, 151, 23);
+		turnoDelJugador.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		turnoDelJugador.setBounds(95, 295, 217, 23);
 		desktopPane_1.add(turnoDelJugador);
 		
 		jugadorEnTurno = new JLabel("Jugador #1");
-		jugadorEnTurno.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		jugadorEnTurno.setBounds(222, 302, 128, 14);
+		jugadorEnTurno.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		jugadorEnTurno.setBounds(315, 291, 195, 31);
 		desktopPane_1.add(jugadorEnTurno);
 		
+		//Boton terminar partida
 		JButton btnTerminarPartida = new JButton("Terminar");
 		btnTerminarPartida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				if(pp.getListaJugadores().get(jugadorActual).getPuntaje()==pp.pi.getPuntajeMaximo()) {
+					JOptionPane.showMessageDialog(null, "EL jugador "+pp.getListaJugadores().get(jugadorActual).toString()+" a ganado, FELICIDADES");
+					pp.mostrarPanelInicial();
+					dispose();
+				}
 				
 				dado1.setGiro(true);
 				sqr1.setColor(Color.WHITE);
@@ -215,19 +223,21 @@ public class PanelJuego extends JFrame {
 		btnTerminarPartida.setBounds(188, 234, 89, 23);
 		desktopPane_1.add(btnTerminarPartida);
 		
+		//Boton tirar los dados
+		btnTirarDado = new JButton("Tirar Dado");
+		btnTirarDado.setBounds(287, 234, 102, 23);
+		desktopPane_1.add(btnTirarDado);
+		
 		dado1 = new Dados(sqr1,gc1);
 		dado2 = new Dados(sqr2,gc2);
 		dado3 = new Dados(sqr3,gc3);
 		dado4 = new Dados(sqr4,gc4);
 		dado5 = new Dados(sqr5,gc5);
 		
-		btnTirarDado = new JButton("Tirar Dado");
-		btnTirarDado.setBounds(287, 234, 102, 23);
-		desktopPane_1.add(btnTirarDado);
-		
 		btnTirarDado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(dado1!=null && dado2!=null && dado3!=null && dado4!=null && dado5!=null) {
+					System.out.println("BORRANDO");
 					if(dado1.getGiro()==true) {
 						dado1.eliminarDados();
 					}
@@ -272,8 +282,13 @@ public class PanelJuego extends JFrame {
 					pp.getListaJugadores().get(jugadorActual).setPuntaje(pp.getListaJugadores().get(jugadorActual).getPuntaje()-puntajeJugador);
 					btnTerminarPartida.doClick();
 				}else {
-					puntajeJugador = puntajeJugador+puntos;
-					pp.getListaJugadores().get(jugadorActual).setPuntaje(pp.getListaJugadores().get(jugadorActual).getPuntaje()+puntos);
+					if(pp.getListaJugadores().get(jugadorActual).getPuntaje()+puntos<=pp.pi.getPuntajeMaximo()) {
+						puntajeJugador = puntajeJugador+puntos;
+						pp.getListaJugadores().get(jugadorActual).setPuntaje(pp.getListaJugadores().get(jugadorActual).getPuntaje()+puntos);
+					}else {
+						JOptionPane.showMessageDialog(null,"El puntaje es mayor al maximo");
+						btnTerminarPartida.doClick();
+					}
 				}
 				label.setText(Integer.toString(puntajeJugador));
 			}
@@ -283,6 +298,7 @@ public class PanelJuego extends JFrame {
 		scrollPane.setBounds(610, 60, 537, 234);
 		desktopPane_1.add(scrollPane);
 		
+		//Tabla de jugadores
 		table = new JTable(pp.getListaJugadores().size(),2);
 		table.setRowHeight(scrollPane.getSize().height/pp.pi.getNumeroJugadores());
 		for(int i=0; i<pp.pi.getNumeroJugadores();i++) {
@@ -292,6 +308,7 @@ public class PanelJuego extends JFrame {
 		
 		
 	}
+	
 	//Funcion para establecer puntaje del lanzamiento
 	public int puntaje(ArrayList<Dados>lista) {
 		
@@ -324,24 +341,50 @@ public class PanelJuego extends JFrame {
 			}
 			for(int i=0; i<lista.size(); i++) {
 				int primero = lista.get(i).getCara();
-				int contador = 0;
+				ArrayList<Dados>grupos = new ArrayList<Dados>();
 				for(int j=0; j<lista.size(); j++) {
 					if(primero==lista.get(j).getCara()) {
-						contador++;
+						grupos.add(lista.get(j));
 					}
 				}
-				if(contador==3) {
+				if(grupos.size()==3) {
 					puntaje = puntaje+ lista.get(i).getCara()*100;
-					lista.get(i).setGiro(false);
-					lista.get(i).getRect().setColor(Color.RED);
+					for(int k=0; k<grupos.size(); k++) {
+						grupos.get(k).setGiro(false);
+						grupos.get(k).getRect().setColor(Color.RED);
+					}
 					break;
-				}else if(contador==4) {
+				}else if(grupos.size()==4) {
 					puntaje = puntaje+ lista.get(i).getCara()*lista.get(i).getCara()*100;
-					lista.get(i).setGiro(false);
-					lista.get(i).getRect().setColor(Color.RED);
+					for(int k=0; k<grupos.size(); k++) {
+						grupos.get(k).setGiro(false);
+						grupos.get(k).getRect().setColor(Color.RED);
+					}
 					break;
 				}
 			}
+			
+			if(dado1.getGiro()==false && dado2.getGiro()==false && dado3.getGiro()==false && dado4.getGiro()==false && dado5.getGiro()==false) {
+				System.out.println("Los cinco cuentan");
+				dado1.setGiro(true);
+				dado1.getRect().setColor(Color.WHITE);
+				dado2.setGiro(true);
+				dado2.getRect().setColor(Color.WHITE);
+				dado3.setGiro(true);
+				dado3.getRect().setColor(Color.WHITE);
+				dado4.setGiro(true);
+				dado4.getRect().setColor(Color.WHITE);
+				dado5.setGiro(true);
+				dado5.getRect().setColor(Color.WHITE);
+				JOptionPane.showMessageDialog(null,"Felicidades, vuelve a lanzar");
+			}
+			
+			System.out.println("############################");
+			System.out.println(dado1.getGiro());
+			System.out.println(dado2.getGiro());
+			System.out.println(dado3.getGiro());
+			System.out.println(dado4.getGiro());
+			System.out.println(dado5.getGiro());
 			
 			return puntaje;
 		}

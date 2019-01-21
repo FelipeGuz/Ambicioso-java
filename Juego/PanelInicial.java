@@ -89,8 +89,10 @@ public class PanelInicial extends JFrame {
 		JButton btnMasJugadores = new JButton("Mas jugadores");
 		btnMasJugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				labelNumCantidadJugadores.setText(String.valueOf(cantidadDeJugadores+1));
-				cantidadDeJugadores+=1;
+				if(cantidadDeJugadores<6) {
+					labelNumCantidadJugadores.setText(String.valueOf(cantidadDeJugadores+1));
+					cantidadDeJugadores+=1;
+				}
 			}
 		});
 		btnMasJugadores.setBounds(606, 78, 118, 23);
@@ -113,8 +115,10 @@ public class PanelInicial extends JFrame {
 		JButton btnMasPuntos = new JButton("Mas puntos");
 		btnMasPuntos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				labelNumPuntajeInicial.setText(String.valueOf(puntajeMaximo+1000));
-				puntajeMaximo+=1000;
+				if(puntajeMaximo<10000) {
+					labelNumPuntajeInicial.setText(String.valueOf(puntajeMaximo+1000));
+					puntajeMaximo+=1000;
+				}
 			}
 		});
 		btnMasPuntos.setBounds(606, 172, 118, 23);
@@ -156,5 +160,9 @@ public class PanelInicial extends JFrame {
 	
 	public int getNumeroJugadores() {
 		return cantidadDeJugadores;
+	}
+	
+	public int getPuntajeMaximo() {
+		return puntajeMaximo;
 	}
 }
