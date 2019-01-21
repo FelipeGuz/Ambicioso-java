@@ -15,11 +15,35 @@ public class Dados {
 	GRect obj;
 	GCanvas canvas;
 	ArrayList<GOval>eliminarDado;
+	boolean giro;
+	int cara;
 	
 	public Dados(GRect obj,GCanvas canvas) {
 		this.obj = obj;
 		this.canvas = canvas;
 		this.eliminarDado = new ArrayList<GOval>();
+		giro = true;
+		cara = 0;
+	}
+	
+	public void setGiro(boolean valor) {
+		giro = valor;
+	}
+	
+	public boolean getGiro() {
+		return giro;
+	}
+	
+	public void setCara(int nCara) {
+		cara = nCara;
+	}
+	
+	public int getCara() {
+		return cara;
+	}
+	
+	public GRect getRect() {
+		return obj;
 	}
 	
 	public int carasDado(){
@@ -171,4 +195,5 @@ public class Dados {
 			eliminarDado.get(i).setVisible(false);
 		}
 	}
+	
 }

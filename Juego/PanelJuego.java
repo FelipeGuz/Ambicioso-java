@@ -187,6 +187,18 @@ public class PanelJuego extends JFrame {
 		JButton btnTerminarPartida = new JButton("Terminar");
 		btnTerminarPartida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				dado1.setGiro(true);
+				sqr1.setColor(Color.WHITE);
+				dado2.setGiro(true);
+				sqr2.setColor(Color.WHITE);
+				dado3.setGiro(true);
+				sqr3.setColor(Color.WHITE);
+				dado4.setGiro(true);
+				sqr4.setColor(Color.WHITE);
+				dado5.setGiro(true);
+				sqr5.setColor(Color.WHITE);
+				
 				table.getModel().setValueAt(pp.getListaJugadores().get(jugadorActual).getPuntaje(), jugadorActual-1, 1);
 				for(int i=0; i<pp.pi.getNumeroJugadores(); i++) {
 					System.out.println(pp.getListaJugadores().get(i+1).toStringP());
@@ -203,6 +215,12 @@ public class PanelJuego extends JFrame {
 		btnTerminarPartida.setBounds(188, 234, 89, 23);
 		desktopPane_1.add(btnTerminarPartida);
 		
+		dado1 = new Dados(sqr1,gc1);
+		dado2 = new Dados(sqr2,gc2);
+		dado3 = new Dados(sqr3,gc3);
+		dado4 = new Dados(sqr4,gc4);
+		dado5 = new Dados(sqr5,gc5);
+		
 		btnTirarDado = new JButton("Tirar Dado");
 		btnTirarDado.setBounds(287, 234, 102, 23);
 		desktopPane_1.add(btnTirarDado);
@@ -210,29 +228,44 @@ public class PanelJuego extends JFrame {
 		btnTirarDado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(dado1!=null && dado2!=null && dado3!=null && dado4!=null && dado5!=null) {
-					dado1.eliminarDados();
-					dado2.eliminarDados();
-					dado3.eliminarDados();
-					dado4.eliminarDados();
-					dado5.eliminarDados();
+					if(dado1.getGiro()==true) {
+						dado1.eliminarDados();
+					}
+					if(dado2.getGiro()==true) {
+						dado2.eliminarDados();
+					}
+					if(dado3.getGiro()==true) {
+						dado3.eliminarDados();
+					}
+					if(dado4.getGiro()==true) {
+						dado4.eliminarDados();
+					}
+					if(dado5.getGiro()==true) {
+						dado5.eliminarDados();
+					}
 				}
-				dado1 = new Dados(sqr1,gc1);
-				int valorD1 = dado1.carasDado();
-				dado2 = new Dados(sqr1,gc2);
-				int valorD2 = dado2.carasDado();
-				dado3 = new Dados(sqr1,gc3);
-				int valorD3 = dado3.carasDado();
-				dado4 = new Dados(sqr1,gc4);
-				int valorD4 = dado4.carasDado();
-				dado5 = new Dados(sqr1,gc5);
-				int valorD5 = dado5.carasDado();
-				System.out.println(valorD1+" "+valorD2+" "+valorD3+" "+valorD4+" "+valorD5);
-				ArrayList<Integer>puntajes = new ArrayList<Integer>();
-				puntajes.add(valorD1);
-				puntajes.add(valorD2);
-				puntajes.add(valorD3);
-				puntajes.add(valorD4);
-				puntajes.add(valorD5);
+				
+				ArrayList<Dados>puntajes = new ArrayList<Dados>();
+				if(dado1.getGiro()==true) {
+					dado1.setCara(dado1.carasDado());
+					puntajes.add(dado1);
+				}
+				if(dado2.getGiro()==true) {
+					dado2.setCara(dado2.carasDado());
+					puntajes.add(dado2);
+				}
+				if(dado3.getGiro()==true) {
+					dado3.setCara(dado3.carasDado());
+					puntajes.add(dado3);
+				}
+				if(dado4.getGiro()==true) {
+					dado4.setCara(dado4.carasDado());
+					puntajes.add(dado4);
+				}
+				if(dado5.getGiro()==true) {
+					dado5.setCara(dado5.carasDado());
+					puntajes.add(dado5);
+				}
 				int puntos = puntaje(puntajes);
 				System.out.println(puntos);
 				if(puntos==0) {
@@ -260,49 +293,57 @@ public class PanelJuego extends JFrame {
 		
 	}
 	//Funcion para establecer puntaje del lanzamiento
-	public int puntaje(ArrayList<Integer>puntajes) {
-		ArrayList<Integer>P = new ArrayList<Integer>();
-		for(int i=1; i<=6; i++) {
-			P.add(i);
-			int cont = 0;
-			for(int j=0; j<puntajes.size(); j++) {
-				if(puntajes.get(j)==i) {
-					cont++;
+	public int puntaje(ArrayList<Dados>lista) {
+		
+		int puntaje = 0;
+		
+		int cont = 0;
+		for(int i=0; i<lista.size();i++) {
+			int primero = lista.get(0).getCara();
+			if(lista.get(i).getCara()!=primero) {
+				break;
+			}
+		}
+		if(cont==5) {
+			return -1;
+		}else {
+			for(int i=0; i<lista.size();i++) {
+				if(lista.get(i).getCara()==1) {
+					puntaje = puntaje+100;
+					lista.get(i).setGiro(false);
+					lista.get(i).getRect().setColor(Color.RED);
+					lista.remove(i);
+					i--;
+				}else if(lista.get(i).getCara()==5) {
+					puntaje = puntaje+50;
+					lista.get(i).setGiro(false);
+					lista.get(i).getRect().setColor(Color.RED);
+					lista.remove(i);
+					i--;
 				}
 			}
-			P.add(cont);
-		}
-		System.out.println(P.toString());
-		
-		int puntos = 0;
-		puntos = puntos+P.get(1)*100+P.get(9)*50;
-		if(P.get(1)==5 || P.get(3)==5 || P.get(5)==5 || P.get(7)==5 || P.get(9)==5 || P.get(11)==5) {
-			System.out.println("SE TERMINO EL JUEGO");
-		}else if(P.get(3)==3 || P.get(5)==3 || P.get(7)==3 || P.get(11)==3) {
-			if(P.get(3)==3) {
-				puntos = puntos+P.get(2)*100;
-			}else if(P.get(5)==3) {
-				puntos = puntos+P.get(4)*100;
-			}else if(P.get(7)==3) {
-				puntos = puntos+P.get(6)*100;
-			}else if(P.get(11)==3) {
-				puntos = puntos+P.get(10)*100;
-			}else {
-				System.out.println("ERROR");
+			for(int i=0; i<lista.size(); i++) {
+				int primero = lista.get(i).getCara();
+				int contador = 0;
+				for(int j=0; j<lista.size(); j++) {
+					if(primero==lista.get(j).getCara()) {
+						contador++;
+					}
+				}
+				if(contador==3) {
+					puntaje = puntaje+ lista.get(i).getCara()*100;
+					lista.get(i).setGiro(false);
+					lista.get(i).getRect().setColor(Color.RED);
+					break;
+				}else if(contador==4) {
+					puntaje = puntaje+ lista.get(i).getCara()*lista.get(i).getCara()*100;
+					lista.get(i).setGiro(false);
+					lista.get(i).getRect().setColor(Color.RED);
+					break;
+				}
 			}
-		}else if(P.get(3)==4 || P.get(5)==4 || P.get(7)==4 || P.get(11)==4) {
-			if(P.get(3)==4) {
-				puntos = puntos+(P.get(2)*100*P.get(2));
-			}else if(P.get(5)==4) {
-				puntos = puntos+(P.get(4)*100*P.get(4));
-			}else if(P.get(7)==4) {
-				puntos = puntos+(P.get(6)*100*P.get(6));
-			}else if(P.get(11)==4) {
-				puntos = puntos+(P.get(10)*100*P.get(10));
-			}else {
-				System.out.println("ERROR");
-			}
+			
+			return puntaje;
 		}
-		return puntos;
 	}
 }
