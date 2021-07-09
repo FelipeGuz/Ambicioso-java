@@ -26,6 +26,8 @@ import basicJuego.*;
 
 public class PanelJuego extends JFrame {
 
+	System.out.println("Inicio");
+
 	private JPanel contentPane;
 	private GCanvas gc1; //Panel dado1 
 	private GCanvas gc2; //Panel dado2

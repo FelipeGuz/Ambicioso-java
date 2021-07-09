@@ -35,6 +35,8 @@ public class PanelInicial extends JFrame {
 	 */
 	public PanelInicial(PanelPrincipal pp) {
 		
+		System.out.println("Inicio");
+
 		this.cantidadDeJugadores = 0;
 		this.puntajeMaximo = 0;
 		
